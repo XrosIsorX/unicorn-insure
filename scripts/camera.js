@@ -41,11 +41,9 @@ function askPermission () {
       if (deviceInfo.kind === 'videoinput') {
         temp.innerHTML += deviceInfo.label;
         temp.innerHTML += '\n';
-        // videoSource = deviceInfo.deviceId;
       }
     }
-
-    console.log(videoSource)
+    videoSource = deviceInfos[0].deviceId;
   });
   var videoObj = {
     video: {
