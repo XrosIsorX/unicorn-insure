@@ -1,6 +1,6 @@
 'use strict'
 
-function loadPictureSummary () {
+function loadPictureSummary() {
   var row = createTag('div', 'row');
   row.innerHTML = 'Your Car';
   renderImages();
@@ -13,13 +13,13 @@ function loadPictureSummary () {
   buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
-  buttonProceed.onclick = function(){
+  buttonProceed.onclick = function() {
     clear();
     loadQR();
   };
 }
 
-function renderImages () {
+function renderImages() {
   var img;
   for (let i = 0; i < 4; i++) {
     img = createTag('img', 'm-1');

@@ -8,7 +8,7 @@ var video, image;
 var buttonTake, buttonRetake, buttonProceed;
 var selectors = [];
 
-function loadCamera () {
+function loadCamera() {
   video = createTag('video');
   video.id = 'video'
   video.width = video.offsetWidth;
@@ -74,13 +74,13 @@ function gotDevices(deviceInfos) {
       option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
       videoSelect.appendChild(option);
     } else {
-      console.log('Some other kind of source/device: ', deviceInfo);
+      // console.log('Some other kind of source/device: ', deviceInfo);
     }
   }
   selectors.forEach(function(select, selectorIndex) {
     if (Array.prototype.slice.call(select.childNodes).some(function(n) {
-      return n.value === values[selectorIndex];
-    })) {
+        return n.value === values[selectorIndex];
+      })) {
       select.value = values[selectorIndex];
     }
   });
@@ -101,24 +101,23 @@ function start() {
   }
   var videoSource = videoSelect.value;
   var constraints = {
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+    video: {
+      deviceId: videoSource ? {
+        exact: videoSource
+      } : undefined
+    }
   };
   navigator.mediaDevices.getUserMedia(constraints).
-      then(gotStream).then(gotDevices).catch(handleError);
-}
+  then(gotStream).then(gotDevices).catch(handleError);
 
 
-function handleError(error) {
-  console.log('navigator.getUserMedia error: ', error);
-}
-
-
-  $("#button-take").click(function(){
+  document.getElementById("button-take").addEventListener("click", function() {
+    console.log("take")
     var canvas = document.createElement("canvas");
     canvas.width = video.offsetWidth;
     canvas.height = video.offsetHeight;
     canvas.getContext('2d')
-          .drawImage(video, 0, 0, canvas.width, canvas.height);
+      .drawImage(video, 0, 0, canvas.width, canvas.height);
 
     image.src = canvas.toDataURL();
     images.push(image.src)
@@ -130,15 +129,21 @@ function handleError(error) {
     buttonRetake.style.display = 'block';
   });
 
-  $("#button-retake").click(function(){
+  document.getElementById("button-retake").addEventListener("click", function() {
     video.style.display = "block";
     image.style.display = "none";
 
     buttonTake.style.display = 'block';
     buttonRetake.style.display = 'none';
-  })
+  });
 
-  $("#button-proceed").click(function(){
-    clear();
-    loadPictureSummary();
-  })
+}
+
+
+function handleError(error) {
+  console.log('navigator.getUserMedia error: ', error);
+}
+$("#button-proceed").click(function() {
+  clear();
+  loadPictureSummary();
+})
