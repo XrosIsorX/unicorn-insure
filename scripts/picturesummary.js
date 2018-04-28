@@ -10,8 +10,15 @@ function loadPictureSummary () {
   renderImages();
 
   row = createTag('div', 'row');
-  var a = createTag('a', 'btn btn-outline-primary btn-sm');
-  a.innerHTML = 'Proceed';
+
+  var buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm');
+  buttonProceed.innerHTML = 'Proceed';
+  buttonProceed.id = 'button-proceed'
+
+  document.getElementById("button-proceed").addEventListener("click", function(){
+    clear();
+    // To Do Sign
+  });
 }
 
 function renderImages () {

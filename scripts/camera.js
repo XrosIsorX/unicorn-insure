@@ -11,7 +11,7 @@ var selectors = [];
 function loadCamera () {
   video = createTag('video');
   video.id = 'video'
-  video.width = video.offsetWidth;  
+  video.width = video.offsetWidth;
   video.setAttribute('playsinline', true);
   video.setAttribute('autoplay', true);
 
@@ -74,7 +74,7 @@ function gotDevices(deviceInfos) {
       option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
       videoSelect.appendChild(option);
     } else {
-      console.log('Some other kind of source/device: ', deviceInfo);
+      // console.log('Some other kind of source/device: ', deviceInfo);
     }
   }
   selectors.forEach(function(select, selectorIndex) {
@@ -107,40 +107,42 @@ function start() {
   };
   navigator.mediaDevices.getUserMedia(constraints).
       then(gotStream).then(gotDevices).catch(handleError);
+
+
+      document.getElementById("button-take").addEventListener("click", function(){
+        console.log("take")
+        var canvas = document.createElement("canvas");
+        canvas.width = video.offsetWidth;
+        canvas.height = video.offsetHeight;
+        canvas.getContext('2d')
+              .drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        image.src = canvas.toDataURL();
+        images.push(image.src)
+
+        image.style.display = "block";
+        video.style.display = "none";
+
+        buttonTake.style.display = 'none';
+        buttonRetake.style.display = 'block';
+      });
+
+      document.getElementById("button-retake").addEventListener("click", function(){
+        video.style.display = "block";
+        image.style.display = "none";
+
+        buttonTake.style.display = 'block';
+        buttonRetake.style.display = 'none';
+      });
+
+      document.getElementById("button-proceed").addEventListener("click", function(){
+        clear();
+        loadPictureSummary();
+      });
+
 }
 
 
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
-
-
-  $("#button-take").click(function(){
-    var canvas = document.createElement("canvas");
-    canvas.width = video.offsetWidth;
-    canvas.height = video.offsetHeight;
-    canvas.getContext('2d')
-          .drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    image.src = canvas.toDataURL();
-    images.push(image.src)
-
-    image.style.display = "block";
-    video.style.display = "none";
-
-    buttonTake.style.display = 'none';
-    buttonRetake.style.display = 'block';
-  });
-
-  $("#button-retake").click(function(){
-    video.style.display = "block";
-    image.style.display = "none";
-
-    buttonTake.style.display = 'block';
-    buttonRetake.style.display = 'none';
-  })
-
-  $("#button-proceed").click(function(){
-    clear();
-    loadPictureSummary();
-  })
