@@ -17,6 +17,16 @@ function loadCamera () {
   var row = createTag('div', 'row');
   selectors[0] = createTag('select', '', row)
 
+//   var v = createTag('div', 'select');
+//   var v1 = createTag('label', '', v);
+//   v1.setAttribute('for', 'videoSource')
+
+//   var se = createTag('select', '', v);
+//   se.id = 'videoSource';
+
+//   var vi = createTag('video');
+//   vi.id = video;
+  
   var row = createTag('div', 'row');
 
   buttonTake = createTag('button', '', row);
@@ -33,45 +43,11 @@ function loadCamera () {
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
 
-  // askPermission();
-  navigator.mediaDevices.enumerateDevices().then(gotDevices);
-  selectors[0].onchange = start;
-  start();
 }
 
-function askPermission () {
-  var videoSource;
-  navigator.mediaDevices.enumerateDevices().then(function(deviceInfos){
-    var temp = createTag('div');
-    for (var i = 0; i !== deviceInfos.length; ++i) {
-      var deviceInfo = deviceInfos[i];
-      if (deviceInfo.kind === 'videoinput') {
-        temp.innerHTML += deviceInfo.label + "This is test 2";
-        temp.innerHTML += "(" + i + ")";
-        temp.innerHTML += '\n';
-      }
-    }
-    videoSource = deviceInfos[4].deviceId;
-    temp.innerHTML += '--------------------';
-    temp.innerHTML += videoSource;
-  });
-  var videoObj = {
-    video: {
-      deviceId: {exact: videoSource}
-    }
-  };
-  var errBack = function(error){
-    alert("Video capture error: ", error.code);
-  };
-
-  if(navigator.getUserMedia) {                      // Standard
-    navigator.mediaDevices.getUserMedia(videoObj).then(startWebcam);
-  } else if (navigator.webkitGetUserMedia) {        // WebKit
-    navigator.webkitGetUserMedia(videoObj, startWebcam, errBack);
-  }else if (navigator.mozGetUserMedia) {            // Firefox
-    navigator.mozGetUserMedia(videoObj, startWebcam, errBack);
-  };
-}
+var videoElement = document.querySelector('video');
+var videoSelect = document.getElementById('videoSource');
+var selectors = [videoSelect];
 
 function gotDevices(deviceInfos) {
   // Handles being called several times to update labels. Preserve values.
@@ -88,8 +64,10 @@ function gotDevices(deviceInfos) {
     var option = document.createElement('option');
     option.value = deviceInfo.deviceId;
     if (deviceInfo.kind === 'videoinput') {
-      option.text = deviceInfo.label || 'camera ' + (selectors[0].length + 1);
-      selectors[0].appendChild(option);
+      option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
+      videoSelect.appendChild(option);
+    } else {
+      console.log('Some other kind of source/device: ', deviceInfo);
     }
   }
   selectors.forEach(function(select, selectorIndex) {
@@ -101,40 +79,37 @@ function gotDevices(deviceInfos) {
   });
 }
 
+navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+
+function gotStream(stream) {
+  window.stream = stream; // make stream available to console
+  videoElement.srcObject = stream;
+  // Refresh button list in case labels have become available
+  return navigator.mediaDevices.enumerateDevices();
+}
+
 function start() {
   if (window.stream) {
     window.stream.getTracks().forEach(function(track) {
       track.stop();
     });
   }
-  var videoSource = selectors[0].value;
+  var videoSource = videoSelect.value;
   var constraints = {
-    audio: {deviceId: undefined},
     video: {deviceId: videoSource ? {exact: videoSource} : undefined}
   };
   navigator.mediaDevices.getUserMedia(constraints).
-      then(startWebcam).then(gotDevices)
+      then(gotStream).then(gotDevices).catch(handleError);
 }
 
-function gotStream(stream) {
-  video.srcObject = stream;
-  // Refresh button list in case labels have become available
-  return navigator.mediaDevices.enumerateDevices();
+videoSelect.onchange = start;
+
+start();
+
+function handleError(error) {
+  console.log('navigator.getUserMedia error: ', error);
 }
 
-function startWebcam (stream) {
-  if(navigator.mediaDevices.getUserMedia){      // Standard
-    video.srcObject = stream;
-    video.onloadedmetadata = function(e) {
-      video.play();
-    };
-  }else if(navigator.webkitGetUserMedia){       // WebKit
-    video.src = window.webkitURL.createObjectURL(stream);
-    video.play();
-  }else if(navigator.mozGetUserMedia){          // Firefox
-    video.src = window.URL.createObjectURL(stream);
-    video.play();
-  };
 
   $("#button-take").click(function(){
     var canvas = document.createElement("canvas");
@@ -165,6 +140,3 @@ function startWebcam (stream) {
     clear();
     loadPictureSummary();
   })
-
-  return navigator.mediaDevices.enumerateDevices();
-}
