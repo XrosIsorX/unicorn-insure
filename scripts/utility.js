@@ -26,7 +26,9 @@ function createTag (tagName, className = '', parent = undefined) {
 }
 
 function createProgressBar () {
-  var div = createTag('div', 'step-container');
+    var container = createTag('div', 'text-center row');
+
+  var div = createTag('div', 'step-container', container);
   var ul = createTag('ul', 'progressbar', div);
 
   var li = createTag('li', 'active', ul);

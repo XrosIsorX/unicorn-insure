@@ -8,7 +8,7 @@ var video, image;
 var buttonTake, buttonRetake, buttonProceed;
 var selectors = [];
 
-function loadCamera () {
+function loadCamera() {
   video = createTag('video');
   video.id = 'video'
   video.width = video.offsetWidth;
@@ -42,7 +42,7 @@ function loadCamera () {
   buttonRetake.style.display = 'none';
 
   row = createTag('div', 'row');
-  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm');
+  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
 
@@ -79,14 +79,12 @@ function gotDevices(deviceInfos) {
   }
   selectors.forEach(function(select, selectorIndex) {
     if (Array.prototype.slice.call(select.childNodes).some(function(n) {
-      return n.value === values[selectorIndex];
-    })) {
+        return n.value === values[selectorIndex];
+      })) {
       select.value = values[selectorIndex];
     }
   });
 }
-
-
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
@@ -103,42 +101,41 @@ function start() {
   }
   var videoSource = videoSelect.value;
   var constraints = {
-    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+    video: {
+      deviceId: videoSource ? {
+        exact: videoSource
+      } : undefined
+    }
   };
   navigator.mediaDevices.getUserMedia(constraints).
-      then(gotStream).then(gotDevices).catch(handleError);
+  then(gotStream).then(gotDevices).catch(handleError);
 
 
-      document.getElementById("button-take").addEventListener("click", function(){
-        console.log("take")
-        var canvas = document.createElement("canvas");
-        canvas.width = video.offsetWidth;
-        canvas.height = video.offsetHeight;
-        canvas.getContext('2d')
-              .drawImage(video, 0, 0, canvas.width, canvas.height);
+  document.getElementById("button-take").addEventListener("click", function() {
+    console.log("take")
+    var canvas = document.createElement("canvas");
+    canvas.width = video.offsetWidth;
+    canvas.height = video.offsetHeight;
+    canvas.getContext('2d')
+      .drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        image.src = canvas.toDataURL();
-        images.push(image.src)
+    image.src = canvas.toDataURL();
+    images.push(image.src)
 
-        image.style.display = "block";
-        video.style.display = "none";
+    image.style.display = "block";
+    video.style.display = "none";
 
-        buttonTake.style.display = 'none';
-        buttonRetake.style.display = 'block';
-      });
+    buttonTake.style.display = 'none';
+    buttonRetake.style.display = 'block';
+  });
 
-      document.getElementById("button-retake").addEventListener("click", function(){
-        video.style.display = "block";
-        image.style.display = "none";
+  document.getElementById("button-retake").addEventListener("click", function() {
+    video.style.display = "block";
+    image.style.display = "none";
 
-        buttonTake.style.display = 'block';
-        buttonRetake.style.display = 'none';
-      });
-
-      document.getElementById("button-proceed").addEventListener("click", function(){
-        clear();
-        loadPictureSummary();
-      });
+    buttonTake.style.display = 'block';
+    buttonRetake.style.display = 'none';
+  });
 
 }
 
@@ -146,3 +143,7 @@ function start() {
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
+$("#button-proceed").click(function() {
+  clear();
+  loadPictureSummary();
+})
