@@ -10,8 +10,13 @@ function loadPictureSummary () {
   renderImages();
 
   row = createTag('div', 'row');
-  var a = createTag('a', 'btn btn-outline-primary btn-sm');
-  a.innerHTML = 'Proceed';
+  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
+  buttonProceed.id = 'button-proceed'
+  buttonProceed.innerHTML = 'Proceed';
+  buttonProceed.onclick = function(){
+    clear();
+    loadQR();
+  };
 }
 
 function renderImages () {

@@ -11,7 +11,7 @@ var selectors = [];
 function loadCamera () {
   video = createTag('video');
   video.id = 'video'
-  video.width = video.offsetWidth;  
+  video.width = video.offsetWidth;
   video.setAttribute('playsinline', true);
   video.setAttribute('autoplay', true);
 
@@ -42,7 +42,7 @@ function loadCamera () {
   buttonRetake.style.display = 'none';
 
   row = createTag('div', 'row');
-  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm');
+  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
 
@@ -85,8 +85,6 @@ function gotDevices(deviceInfos) {
     }
   });
 }
-
-
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
