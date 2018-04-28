@@ -123,7 +123,7 @@ function start() {
     console.log(canvas.toDataURL())
     images.push(image.src)
 
-    image.style.display = "inlinde-block";
+    image.style.display = "block";
     // video.style.display = "none";
 
     buttonTake.style.display = 'none';
