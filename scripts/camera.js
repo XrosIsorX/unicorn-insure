@@ -15,7 +15,6 @@ function loadCamera() {
   video.setAttribute('playsinline', true);
   video.setAttribute('autoplay', true);
 
-
   image = createTag('img');
   image.id = 'image';
   // image.style.display = 'none';
@@ -45,6 +44,10 @@ function loadCamera() {
   buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
+  buttonProceed.onclick = function () {
+    clear();
+    loadPictureSummary();
+  };
 
   videoElement = document.querySelector('video');
   videoSelect = document.getElementById('videoSource');
@@ -53,8 +56,6 @@ function loadCamera() {
   videoSelect.onchange = start;
   start();
 }
-
-
 
 function gotDevices(deviceInfos) {
   // Handles being called several times to update labels. Preserve values.
@@ -124,7 +125,7 @@ function start() {
     images.push(image.src)
 
     image.style.display = "block";
-    // video.style.display = "none";
+    video.style.display = "none";
 
     buttonTake.style.display = 'none';
     buttonRetake.style.display = 'block';
@@ -140,11 +141,6 @@ function start() {
 
 }
 
-
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
-$("#button-proceed").click(function() {
-  clear();
-  loadPictureSummary();
-})
