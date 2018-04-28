@@ -86,3 +86,38 @@
 .progressbar li.active + li:after {
   background-color: #55b776;
 }
+
+
+.login-form {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 2;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+.icon-login {
+    width: 40%;
+    margin: 0 auto;
+}
+
+#login-container {
+    margin-top: 100px;
+}
+
+.gradient-bg {
+    background: #64b5f6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom,#64b5f6, #3a7bd5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #64b5f6, #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body.gradient-bg {
+    height: 100vh;
+}
