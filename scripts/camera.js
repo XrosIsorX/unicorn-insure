@@ -1,6 +1,7 @@
 'use strict'
 
 var videoElement;
+var videoSource
 var videoSelect;
 var selectors;
 var images = [];
@@ -21,16 +22,6 @@ function loadCamera () {
   image.style.display = 'none';
 
   var row = createTag('div', 'row');
-  selectors[0] = createTag('select', '', row)
-
-  var v = createTag('div', 'select');
-  var v1 = createTag('label', '', v);
-  v1.setAttribute('for', 'videoSource');
-
-  var se = createTag('select', '', v);
-  se.id = 'videoSource';
-
-  var row = createTag('div', 'row');
 
   buttonTake = createTag('button', '', row);
   buttonTake.id = 'button-take';
@@ -47,10 +38,8 @@ function loadCamera () {
   buttonProceed.innerHTML = 'Proceed';
 
   videoElement = document.querySelector('video');
-  videoSelect = document.getElementById('videoSource');
   selectors = [videoSelect];
   navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
-  videoSelect.onchange = start;
   start();
 }
 
@@ -66,17 +55,7 @@ function gotDevices(deviceInfos) {
       select.removeChild(select.firstChild);
     }
   });
-  for (var i = 0; i !== deviceInfos.length; ++i) {
-    var deviceInfo = deviceInfos[i];
-    var option = document.createElement('option');
-    option.value = deviceInfo.deviceId;
-    if (deviceInfo.kind === 'videoinput') {
-      option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
-      videoSelect.appendChild(option);
-    } else {
-      console.log('Some other kind of source/device: ', deviceInfo);
-    }
-  }
+  videoSource = deviceInfo[4].deviceId
   selectors.forEach(function(select, selectorIndex) {
     if (Array.prototype.slice.call(select.childNodes).some(function(n) {
       return n.value === values[selectorIndex];
@@ -85,8 +64,6 @@ function gotDevices(deviceInfos) {
     }
   });
 }
-
-
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
@@ -101,7 +78,6 @@ function start() {
       track.stop();
     });
   }
-  var videoSource = videoSelect.value;
   var constraints = {
     video: {deviceId: videoSource ? {exact: videoSource} : undefined}
   };
