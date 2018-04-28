@@ -1,5 +1,8 @@
 'use strict'
 
+var videoElement;
+var videoSelect;
+var selectors;
 var images = [];
 var video, image;
 var buttonTake, buttonRetake, buttonProceed;
@@ -8,7 +11,10 @@ var selectors = [];
 function loadCamera () {
   video = createTag('video');
   video.id = 'video'
-  video.width = video.offsetWidth;
+  video.width = video.offsetWidth;  
+  video.setAttribute('playsinline', true);
+  video.setAttribute('autoplay', true);
+
 
   image = createTag('img');
   image.id = 'image';
@@ -17,16 +23,13 @@ function loadCamera () {
   var row = createTag('div', 'row');
   selectors[0] = createTag('select', '', row)
 
-//   var v = createTag('div', 'select');
-//   var v1 = createTag('label', '', v);
-//   v1.setAttribute('for', 'videoSource')
+  var v = createTag('div', 'select');
+  var v1 = createTag('label', '', v);
+  v1.setAttribute('for', 'videoSource');
 
-//   var se = createTag('select', '', v);
-//   se.id = 'videoSource';
+  var se = createTag('select', '', v);
+  se.id = 'videoSource';
 
-//   var vi = createTag('video');
-//   vi.id = video;
-  
   var row = createTag('div', 'row');
 
   buttonTake = createTag('button', '', row);
@@ -43,11 +46,15 @@ function loadCamera () {
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
 
+  videoElement = document.querySelector('video');
+  videoSelect = document.getElementById('videoSource');
+  selectors = [videoSelect];
+  navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+  videoSelect.onchange = start;
+  start();
 }
 
-var videoElement = document.querySelector('video');
-var videoSelect = document.getElementById('videoSource');
-var selectors = [videoSelect];
+
 
 function gotDevices(deviceInfos) {
   // Handles being called several times to update labels. Preserve values.
@@ -65,7 +72,7 @@ function gotDevices(deviceInfos) {
     option.value = deviceInfo.deviceId;
     if (deviceInfo.kind === 'videoinput') {
       option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
-      videoSelect.appendChild(option);
+      videoSelect = option;
     } else {
       console.log('Some other kind of source/device: ', deviceInfo);
     }
@@ -79,7 +86,7 @@ function gotDevices(deviceInfos) {
   });
 }
 
-navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
@@ -102,9 +109,6 @@ function start() {
       then(gotStream).then(gotDevices).catch(handleError);
 }
 
-videoSelect.onchange = start;
-
-start();
 
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
