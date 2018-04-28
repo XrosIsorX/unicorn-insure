@@ -24,3 +24,20 @@ function createTag (tagName, className = '', parent = undefined) {
 
   return tag;
 }
+
+function createProgressBar () {
+  var div = createTag('div', 'step-container');
+  var ul = createTag('ul', 'progressbar', div);
+
+  var li = createTag('li', 'active', ul);
+  li.innerHTML = 'Snap';
+
+  var li = createTag('li', '', ul);
+  li.innerHTML = 'Sign';
+
+  var li = createTag('li', '', ul);
+  li.innerHTML = 'Fix';
+
+  var li = createTag('li', '', ul);
+  li.innerHTML = 'Done';
+}
