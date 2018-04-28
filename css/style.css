@@ -121,3 +121,8 @@
 body.gradient-bg {
     height: 100vh;
 }
+
+.navbar-brand {
+    color: white !important;
+    
+}

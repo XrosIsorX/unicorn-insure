@@ -40,7 +40,9 @@
   </head>
   <body onload="init()">
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #64b5f6;">
-        <a class="navbar-brand" href="#">Unicorn</a>
+        <a class="navbar-brand" href="#">
+          <img src="pic/icon30x30.png" width="30" height="30" alt=""> Unicorn
+        </a>
     </nav>
     <div class="container" id="main-container">
         <h2>Claim Form</h2>
@@ -72,7 +74,7 @@
       <small>I have read and understand.</small>
         <div id="sketchpadapp">
             <canvas id="sketchpad" class="mb-3" height="200" width="350px"></canvas>
-            <a type="button" class="btn btn-raised btn-primary" href="./done.html">Accept</a>
+            <button type="button" class="btn btn-raised btn-primary" onclick='location.href="./done.html"'>Accept</button>
             <button type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);" class="btn btn-secondary">Clear</button>
         </div>
     </div>
