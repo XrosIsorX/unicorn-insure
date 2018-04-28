@@ -39,12 +39,12 @@ function askPermission () {
     for (var i = 0; i !== deviceInfos.length; ++i) {
       var deviceInfo = deviceInfos[i];
       if (deviceInfo.kind === 'videoinput') {
-        temp.innerHTML += deviceInfo.label + "This is test 1";
+        temp.innerHTML += deviceInfo.label + "This is test 2";
         temp.innerHTML += "(" + i + ")";
         temp.innerHTML += '\n';
       }
     }
-    videoSource = deviceInfos[3].deviceId;
+    videoSource = deviceInfos[4].deviceId;
     temp.innerHTML += '--------------------';
     temp.innerHTML += videoSource;
   });
