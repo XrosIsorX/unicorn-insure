@@ -33,9 +33,14 @@ function loadCamera () {
 }
 
 function askPermission () {
+  var videoSource;
+  navigator.mediaDevices.enumerateDevices().then(function(deviceInfos){
+    videoSource = deviceInfos[1].deviceId;
+  });
   var videoObj = {
-    "video": true,
-    "deviceId": {exact: 2}
+    video: {
+      deviceId: {exact: videoSource}
+    }
   };
   var errBack = function(error){
     alert("Video capture error: ", error.code);
