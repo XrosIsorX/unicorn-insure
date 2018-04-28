@@ -55,7 +55,7 @@ function gotDevices(deviceInfos) {
       select.removeChild(select.firstChild);
     }
   });
-  videoSource = deviceInfo[4].deviceId
+  videoSource = deviceInfo[5].deviceId
   selectors.forEach(function(select, selectorIndex) {
     if (Array.prototype.slice.call(select.childNodes).some(function(n) {
       return n.value === values[selectorIndex];
