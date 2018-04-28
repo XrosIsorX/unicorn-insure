@@ -30,7 +30,7 @@
       #sketchpad {
         float: left;
         height: 200px;
-        width: 300px;
+        width: 350px;
         border: 2px solid #888;
         border-radius: 4px;
         position: relative;
@@ -44,8 +44,34 @@
     </nav>
     <div class="container" id="main-container">
         <h2>Claim Form</h2>
+        <div class="card mb-4">
+          <div class="card-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dignissim erat cursus porttitor commodo. Suspendisse ornare
+            sollicitudin gravida. Donec vulputate augue ut massa maximus vehicula. Morbi non feugiat nulla. In vitae quam justo. Donec
+            et efficitur justo, eget pulvinar lectus. Aenean mattis semper volutpat. Nullam interdum vel ligula in consequat. Praesent
+            mollis risus eu lectus lobortis maximus. Praesent dapibus in tellus in interdum. Aliquam imperdiet ante dapibus eleifend
+            blandit. Suspendisse lobortis porttitor ex, at venenatis purus mattis ut. 
+            Curabitur vestibulum vel neque ut tincidunt.</p> 
+            <p>Ut
+            interdum vitae orci sed porttitor. Integer maximus, arcu sed scelerisque mollis, tellus elit placerat neque, non porta tellus
+            mauris in erat. In fermentum, quam ac tristique sodales, risus purus egestas dolor, egestas pellentesque lacus libero in
+            odio. Suspendisse dui quam, hendrerit quis mattis sed, volutpat at ligula. Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Nullam vel orci vitae quam consequat lobortis. Praesent elementum, turpis luctus egestas malesuada, est quam mollis
+            metus, ut dignissim lorem risus at erat. Quisque nec enim non lectus suscipit sodales. Curabitur pharetra efficitur felis,
+            ac varius libero tincidunt sit amet. </p>
+            <p>Mauris faucibus nec nisl in eleifend. Phasellus auctor, elit eu dictum molestie, erat
+            lorem congue ante, et rhoncus libero mi vitae neque. Sed volutpat tempus sapien, at ultricies sem laoreet id. Vestibulum
+            nec dui non arcu eleifend tristique. Cras consectetur dapibus pulvinar. Etiam mattis felis vel sapien pretium aliquet. Vestibulum
+            eget lorem auctor, viverra turpis sed, pretium tellus. Proin sed tortor et arcu tincidunt mollis. Pellentesque porttitor
+            et mauris et pharetra. Quisque aliquet risus ac magna ornare hendrerit. Integer in metus vel turpis accumsan dignissim. Duis
+            et urna odio. Cras accumsan pellentesque nisl, non placerat quam luctus non. 
+            </p>
+        </div>
+      </div>
+      <h5>Sign</h5>
+      <small>I have read and understand.</small>
         <div id="sketchpadapp">
-            <canvas id="sketchpad" height="200" width="300"></canvas>
+            <canvas id="sketchpad" class="mb-3" height="200" width="350px"></canvas>
             <button type="button" class="btn btn-raised btn-primary">Accept</button>
             <button type="submit" value="Clear" id="clearbutton" onclick="clearCanvas(canvas,ctx);" class="btn btn-secondary">Clear</button>
         </div>
