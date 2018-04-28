@@ -29,16 +29,17 @@ function loadSign () {
 
   var button = createTag('button', 'btn btn-raised btn-primary', div);
   button.setAttribute('type', 'button');
-  button.innerHTML = 'Accept';
+  button.innerHTML = 'Done';
+  button.onclick = function(){
+    clear();
+    loadDone();
+  };
 
   var button = createTag('button', 'btn btn-secondary', div);
   button.setAttribute('value', 'Clear');
   button.setAttribute('type', 'submit');
   button.innerHTML = 'Clear';
   button.id = 'clearbutton';
-  button.onclick = function(){
-    clearCanvas(canvas,ctx);
-  };
 
   init();
 }
