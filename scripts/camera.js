@@ -32,14 +32,14 @@ function loadCamera() {
 
   var row = createTag('div', 'row');
 
-  buttonTake = createTag('button', '', row);
+  buttonTake = createTag('button', 'btn btn-outline-danger btn-sm', row);
   buttonTake.id = 'button-take';
   buttonTake.innerHTML = 'Take';
 
 
-  buttonRetake = createTag('button', '', row);
+  buttonRetake = createTag('button', 'btn btn-outline-success btn-sm', row);
   buttonRetake.id = 'button-retake';
-  buttonRetake.innerHTML = 'Retry';
+  buttonRetake.innerHTML = 'Next';
   buttonRetake.style.display = 'none';
 
   row = createTag('div', 'row');
