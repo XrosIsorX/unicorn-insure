@@ -39,7 +39,7 @@ function askPermission () {
     for (var i = 0; i !== deviceInfos.length; ++i) {
       var deviceInfo = deviceInfos[i];
       if (deviceInfo.kind === 'videoinput') {
-        temp.innerHTML += deviceInfo.deviceId;
+        temp.innerHTML += deviceInfo.label;
         temp.innerHTML += '\n';
         // videoSource = deviceInfo.deviceId;
       }
