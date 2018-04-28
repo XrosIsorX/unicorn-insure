@@ -33,9 +33,25 @@ function loadCamera () {
 }
 
 function askPermission () {
+  var videoSource;
+  navigator.mediaDevices.enumerateDevices().then(function(deviceInfos){
+    var temp = createTag('div');
+    for (var i = 0; i !== deviceInfos.length; ++i) {
+      var deviceInfo = deviceInfos[i];
+      if (deviceInfo.kind === 'videoinput') {
+        temp.innerHTML += deviceInfo.label + "This is test 2";
+        temp.innerHTML += "(" + i + ")";
+        temp.innerHTML += '\n';
+      }
+    }
+    videoSource = deviceInfos[4].deviceId;
+    temp.innerHTML += '--------------------';
+    temp.innerHTML += videoSource;
+  });
   var videoObj = {
-    "video": true,
-    "deviceId": {exact: 2}
+    video: {
+      deviceId: {exact: videoSource}
+    }
   };
   var errBack = function(error){
     alert("Video capture error: ", error.code);
