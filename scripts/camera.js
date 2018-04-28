@@ -40,6 +40,7 @@ function askPermission () {
       var deviceInfo = deviceInfos[i];
       if (deviceInfo.kind === 'videoinput') {
         temp.innerHTML += deviceInfo.label;
+        temp.innerHTML += "(" + i + ")";
         temp.innerHTML += '\n';
       }
     }
