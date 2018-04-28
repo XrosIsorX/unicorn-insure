@@ -35,7 +35,17 @@ function loadCamera () {
 function askPermission () {
   var videoSource;
   navigator.mediaDevices.enumerateDevices().then(function(deviceInfos){
-    videoSource = deviceInfos[1].deviceId;
+    var temp = createTag('div');
+    for (var i = 0; i !== deviceInfos.length; ++i) {
+      var deviceInfo = deviceInfos[i];
+      if (deviceInfo.kind === 'videoinput') {
+        temp.innerHTML += deviceInfo.deviceId;
+        temp.innerHTML += '\n';
+        // videoSource = deviceInfo.deviceId;
+      }
+    }
+
+    console.log(videoSource)
   });
   var videoObj = {
     video: {
