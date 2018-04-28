@@ -18,7 +18,7 @@ function loadCamera() {
 
   image = createTag('img');
   image.id = 'image';
-  image.style.display = 'none';
+  // image.style.display = 'none';
 
   var row = createTag('div', 'row');
   selectors[0] = createTag('select', '', row)
@@ -112,7 +112,7 @@ function start() {
 
 
   document.getElementById("button-take").addEventListener("click", function() {
-    console.log("take")
+    var image = document.getElementById("image")
     var canvas = document.createElement("canvas");
     canvas.width = video.offsetWidth;
     canvas.height = video.offsetHeight;
@@ -120,10 +120,11 @@ function start() {
       .drawImage(video, 0, 0, canvas.width, canvas.height);
 
     image.src = canvas.toDataURL();
+    console.log(canvas.toDataURL())
     images.push(image.src)
 
     image.style.display = "block";
-    video.style.display = "none";
+    // video.style.display = "none";
 
     buttonTake.style.display = 'none';
     buttonRetake.style.display = 'block';
