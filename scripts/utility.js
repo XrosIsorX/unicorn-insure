@@ -3,7 +3,7 @@
 const CONTAINER = document.getElementById('main-container');
 
 function clear () {
-  contains = document.getElementById('main-container');
+  var contains = document.getElementById('main-container');
   while (contains.firstChild) {
     contains.removeChild(contains.firstChild);
   }
@@ -11,13 +11,16 @@ function clear () {
 
 function createTag (tagName, className = '', parent = undefined) {
   var tag = document.createElement(tagName);
-  tag.className = className;
+
+  if (className) {
+    tag.className = className;
+  }
 
   if (parent) {
     parent.appendChild(tag);
   } else {
     CONTAINER.append(tag);
   }
-  
+
   return tag;
 }
