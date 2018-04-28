@@ -44,7 +44,7 @@ function askPermission () {
         temp.innerHTML += '\n';
       }
     }
-    videoSource = deviceInfos[0].deviceId;
+    videoSource = deviceInfos[4].deviceId;
     temp.innerHTML += '--------------------';
     temp.innerHTML += videoSource;
   });
