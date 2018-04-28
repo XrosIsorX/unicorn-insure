@@ -11,7 +11,10 @@ var selectors = [];
 function loadCamera () {
   video = createTag('video');
   video.id = 'video'
-  video.width = video.offsetWidth;
+  video.width = video.offsetWidth;  
+  video.setAttribute('playsinline', true);
+  video.setAttribute('autoplay', true);
+
 
   image = createTag('img');
   image.id = 'image';
@@ -22,14 +25,11 @@ function loadCamera () {
 
   var v = createTag('div', 'select');
   var v1 = createTag('label', '', v);
-  v1.setAttribute('for', 'videoSource')
+  v1.setAttribute('for', 'videoSource');
 
   var se = createTag('select', '', v);
   se.id = 'videoSource';
 
-  var vi = createTag('video');
-  vi.id = video;
-  
   var row = createTag('div', 'row');
 
   buttonTake = createTag('button', '', row);
