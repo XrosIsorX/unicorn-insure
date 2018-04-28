@@ -28,6 +28,6 @@ function loadLogin () {
   buttonLogin.onclick = function(){
     document.getElementsByTagName('body')[0].className = '';
     clear();
-    loadPictureSummary();
+    loadCamera();
   };
 }
