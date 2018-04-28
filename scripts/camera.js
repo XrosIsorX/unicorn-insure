@@ -3,6 +3,7 @@
 var images = [];
 var video, image;
 var buttonTake, buttonRetake, buttonProceed;
+var selectors = [];
 
 function loadCamera () {
   video = createTag('video');
@@ -12,6 +13,9 @@ function loadCamera () {
   image = createTag('img');
   image.id = 'image';
   image.style.display = 'none';
+
+  var row = createTag('div', 'row');
+  selectors[0] = createTag('select', '', row)
 
   var row = createTag('div', 'row');
 
@@ -29,7 +33,10 @@ function loadCamera () {
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
 
-  askPermission();
+  // askPermission();
+  navigator.mediaDevices.enumerateDevices().then(gotDevices);
+  selectors[0].onchange = start;
+  start();
 }
 
 function askPermission () {
@@ -64,6 +71,55 @@ function askPermission () {
   }else if (navigator.mozGetUserMedia) {            // Firefox
     navigator.mozGetUserMedia(videoObj, startWebcam, errBack);
   };
+}
+
+function gotDevices(deviceInfos) {
+  // Handles being called several times to update labels. Preserve values.
+  var values = selectors.map(function(select) {
+    return select.value;
+  });
+  selectors.forEach(function(select) {
+    while (select.firstChild) {
+      select.removeChild(select.firstChild);
+    }
+  });
+  for (var i = 0; i !== deviceInfos.length; ++i) {
+    var deviceInfo = deviceInfos[i];
+    var option = document.createElement('option');
+    option.value = deviceInfo.deviceId;
+    if (deviceInfo.kind === 'videoinput') {
+      option.text = deviceInfo.label || 'camera ' + (selectors[0].length + 1);
+      selectors[0].appendChild(option);
+    }
+  }
+  selectors.forEach(function(select, selectorIndex) {
+    if (Array.prototype.slice.call(select.childNodes).some(function(n) {
+      return n.value === values[selectorIndex];
+    })) {
+      select.value = values[selectorIndex];
+    }
+  });
+}
+
+function start() {
+  if (window.stream) {
+    window.stream.getTracks().forEach(function(track) {
+      track.stop();
+    });
+  }
+  var videoSource = selectors[0].value;
+  var constraints = {
+    audio: {deviceId: undefined},
+    video: {deviceId: videoSource ? {exact: videoSource} : undefined}
+  };
+  navigator.mediaDevices.getUserMedia(constraints).
+      then(startWebcam).then(gotDevices)
+}
+
+function gotStream(stream) {
+  video.srcObject = stream;
+  // Refresh button list in case labels have become available
+  return navigator.mediaDevices.enumerateDevices();
 }
 
 function startWebcam (stream) {
@@ -109,4 +165,6 @@ function startWebcam (stream) {
     clear();
     loadPictureSummary();
   })
+
+  return navigator.mediaDevices.enumerateDevices();
 }
