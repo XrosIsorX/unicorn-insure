@@ -15,10 +15,9 @@ function loadCamera() {
   video.setAttribute('playsinline', true);
   video.setAttribute('autoplay', true);
 
-
   image = createTag('img');
   image.id = 'image';
-  image.style.display = 'none';
+  // image.style.display = 'none';
 
   var row = createTag('div', 'row');
   selectors[0] = createTag('select', '', row)
@@ -43,9 +42,13 @@ function loadCamera() {
   buttonRetake.style.display = 'none';
 
   row = createTag('div', 'row');
-  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm');
+  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';
+  buttonProceed.onclick = function () {
+    clear();
+    loadPictureSummary();
+  };
 
   videoElement = document.querySelector('video');
   videoSelect = document.getElementById('videoSource');
@@ -54,8 +57,6 @@ function loadCamera() {
   videoSelect.onchange = start;
   start();
 }
-
-
 
 function gotDevices(deviceInfos) {
   // Handles being called several times to update labels. Preserve values.
@@ -75,7 +76,7 @@ function gotDevices(deviceInfos) {
       option.text = deviceInfo.label || 'camera ' + (videoSelect.length + 1);
       videoSelect.appendChild(option);
     } else {
-      // console.log('Some other kind of source/desvice: ', deviceInfo);
+      // console.log('Some other kind of source/device: ', deviceInfo);
     }
   }
   selectors.forEach(function(select, selectorIndex) {
@@ -86,8 +87,6 @@ function gotDevices(deviceInfos) {
     }
   });
 }
-
-
 
 function gotStream(stream) {
   window.stream = stream; // make stream available to console
@@ -113,11 +112,17 @@ function start() {
   navigator.mediaDevices.getUserMedia(constraints).
   then(gotStream).then(gotDevices).catch(handleError);
 
+<<<<<<< HEAD
   video = document.getElementById("video")
   image = document.getElementById("image")
 
   buttonTake = document.getElementById("button-take")
   buttonTake.onclick = function() {
+=======
+
+  document.getElementById("button-take").addEventListener("click", function() {
+    var image = document.getElementById("image")
+>>>>>>> master
     var canvas = document.createElement("canvas");
     canvas.width = video.offsetWidth;
     canvas.height = video.offsetHeight;
@@ -125,6 +130,7 @@ function start() {
       .drawImage(video, 0, 0, canvas.width, canvas.height);
 
     image.src = canvas.toDataURL();
+    console.log(canvas.toDataURL())
     images.push(image.src)
 
     image.style.display = "block";
@@ -134,13 +140,18 @@ function start() {
     buttonRetake.style.display = 'block';
   }
 
+<<<<<<< HEAD
   buttonRetake = document.getElementById("button-retake")
   buttonRetake.onclick = function() {
+=======
+  document.getElementById("button-retake").addEventListener("click", function() {
+>>>>>>> master
     video.style.display = "block";
     image.style.display = "none";
 
     buttonTake.style.display = 'block';
     buttonRetake.style.display = 'none';
+<<<<<<< HEAD
   }
 
   buttonProceed = document.getElementById("button-proceed")
@@ -186,3 +197,12 @@ function handleError(error) {
 //   clear();
 //   loadPictureSummary();
 // })
+=======
+  });
+
+}
+
+function handleError(error) {
+  console.log('navigator.getUserMedia error: ', error);
+}
+>>>>>>> master

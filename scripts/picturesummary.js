@@ -1,6 +1,6 @@
 'use strict'
 
-function loadPictureSummary () {
+function loadPictureSummary() {
   var row = createTag('div', 'row');
   row.innerHTML = 'Your Car';
   renderImages();
@@ -19,7 +19,7 @@ function loadPictureSummary () {
   }
 }
 
-function renderImages () {
+function renderImages() {
   var img;
   for (let i = 0; i < 4; i++) {
     img = createTag('img', 'm-1');
