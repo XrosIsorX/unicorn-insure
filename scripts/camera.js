@@ -18,9 +18,7 @@ function loadCamera() {
   image = createTag('img');
   image.id = 'image';
   // image.style.display = 'none';
-
-  var row = createTag('div', 'row');
-  selectors[0] = createTag('select', '', row)
+  var row = createTag('div', 'row row-center');
 
   var v = createTag('div', 'select');
   var v1 = createTag('label', '', v);
@@ -29,11 +27,11 @@ function loadCamera() {
   var se = createTag('select', '', v);
   se.id = 'videoSource';
 
-  var row = createTag('div', 'row');
+  var row = createTag('div', 'row row-center');
 
-  buttonTake = createTag('button', 'btn btn-outline-danger btn-sm', row);
+  buttonTake = createTag('button', 'btn btn-raised btn-danger ', row);
   buttonTake.id = 'button-take';
-  buttonTake.innerHTML = 'Take';
+  buttonTake.innerHTML = '<i class="material-icons" onclick="loadCamera">photo_camera</i>';
 
 
   buttonRetake = createTag('button', 'btn btn-outline-success btn-sm', row);
@@ -41,7 +39,7 @@ function loadCamera() {
   buttonRetake.innerHTML = 'Next';
   buttonRetake.style.display = 'none';
 
-  row = createTag('div', 'row');
+  row = createTag('div', 'row row-center');
   buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
   buttonProceed.id = 'button-proceed'
   buttonProceed.innerHTML = 'Proceed';

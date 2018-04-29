@@ -148,3 +148,7 @@ body.gradient-bg {
     color: white !important;
 
 }
+
+.row-center {
+    justify-content: center;
+}
