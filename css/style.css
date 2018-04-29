@@ -152,3 +152,7 @@ body.gradient-bg {
 .row-center {
     justify-content: center;
 }
+
+.container {
+    overflow: hidden;
+}

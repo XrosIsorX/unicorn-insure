@@ -1,10 +1,13 @@
 'use strict'
 
 function loadPictureSummary() {
+
+  createProgressBar();
+  
   var row = createTag('div', 'row');
   row.innerHTML = 'Your Car';
   renderImages();
-  
+
   row = createTag('div', 'row');
   row.innerHTML = 'Disputant Car';
   renderImages();
