@@ -4,10 +4,17 @@ function loadPictureSummary() {
   var row = createTag('div', 'row');
   row.innerHTML = 'Your Car';
   renderImages();
-
+  
   row = createTag('div', 'row');
   row.innerHTML = 'Disputant Car';
   renderImages();
+
+  row = createTag('div', 'row');
+  row.innerHTML = 'ID card Picture';
+
+
+  row = createTag('div', 'row');
+  row.innerHTML = 'Driver card Picture';
 
   row = createTag('div', 'row');
   var buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm');
