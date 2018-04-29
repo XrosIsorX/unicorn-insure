@@ -143,3 +143,8 @@ body.gradient-bg {
   position: relative;
   /* Necessary for correct mouse co-ords in Firefox */
 }
+
+.navbar-brand {
+    color: white !important;
+
+}

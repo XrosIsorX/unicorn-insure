@@ -2,52 +2,55 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Material Design for Bootstrap fonts and icons -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 
-  <!-- Material Design for Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap-material-design.min.css">
+    <!-- Material Design for Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-
-  <title>Unicorn: Snap Sign Fix</title>
+    <title>Unicorn: Snap Sign Fix</title>
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #64b5f6;">
-    <a class="navbar-brand" href="#">Unicorn</a>
-  </nav>
+<body class="gradient-bg">
+    <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #64b5f6;">
+      <a class="navbar-brand" href="#">
+        <img src="pic/icon30x30.png" width="30" height="30" alt="">
+      </a>
+        <a class="navbar-brand" href="#">Unicorn</a>
+    </nav> -->
+    <div class="container" id="login-container">
+        <div class="text-center icon-login">
+            <img src="pic/icon_fullsize.png" class="img-fluid">
+        </div>
+        <div class="login text-center mb-3">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="login-form text-center" id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="login-form text-center" id="password" placeholder="Password">
+                </div>
+            </form>
+            <button type="button" class="btn btn-raised btn-secondary" onclick='location.href="./snap.html"'>SIGN IN</button>
 
-  <div class="container" id="main-container">
-    <!-- Content here -->
-  </div>
+        </div>
+        <!-- Content here -->
+    </div>
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function() {
-      $("body").bootstrapMaterialDesign();
-    });
-  </script>
-
-  <script src="scripts/utility.js"></script>
-  <script src="scripts/garage-list.js"></script>
-  <script src="scripts/done.js"></script>
-  <script src="scripts/sign.js"></script>
-  <script src="scripts/disputant-detail.js"></script>
-  <script src="scripts/qr.js"></script>
-  <script src="scripts/picturesummary.js"></script>
-  <script src="scripts/camera.js"></script>
-  <script src="scripts/snap.js"></script>
-  <script src="scripts/login.js"></script>
-  <script>
-    loadLogin()
-  </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+    <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+</body>
 
 </html>

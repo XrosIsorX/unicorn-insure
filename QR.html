@@ -23,22 +23,12 @@
     </a>
   </nav>
   <div class="container" id="main-container">
-    <div class="step-container">
-      <ul class="progressbar row">
-        <li class="active">Snap</li>
-        <li>Sign</li>
-        <li>Fix</li>
-        <li>Done</li>
-      </ul>
-    </div>
+    <h4>We recieved your information</h4>
+     Your disputant has to complete filling information in the provided link. </br></br></br></br></br>
     <div class="text-center">
-      <h5><b>Hello, Mr.Kritsana Chaikaew</b></h5>
-      <b>Please take 8 photos of each car</b>
-      <img src="pic/howtotakepic.png" width="100%">
-      </br></br>
-      <button type="button" class="btn btn-raised btn-success btn-lg">
-        <i class="material-icons">photo_camera</i>
-      </button>
+      <div id="qrcode"></div>
+      <a href="./disputant-detail.html">http://unicorn-insure.com/A7yck9</a>
+      
     </div>
   </div>
 
@@ -48,6 +38,65 @@
   <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
   <script type="text/javascript" src="scripts\jquery-qrcode-0.14.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('body').bootstrapMaterialDesign();
+    });
+
+    options = {
+      // render method: 'canvas', 'image' or 'div'
+      render: 'canvas',
+
+      // version range somewhere in 1 .. 40
+      minVersion: 1,
+      maxVersion: 40,
+
+      // error correction level: 'L', 'M', 'Q' or 'H'
+      ecLevel: 'L',
+
+      // offset in pixel if drawn onto existing canvas
+      left: 0,
+      top: 0,
+
+      // size in pixel
+      size: 200,
+
+      // code color or image element
+      fill: '#000',
+
+      // background color or image element, null for transparent background
+      background: null,
+
+      // content
+      text: 'http://127.0.0.1/',
+
+      // corner radius relative to module width: 0.0 .. 0.5
+      radius: 0,
+
+      // quiet zone in modules
+      quiet: 0,
+
+      // modes
+      // 0: normal
+      // 1: label strip
+      // 2: label box
+      // 3: image strip
+      // 4: image box
+      mode: 0,
+
+      mSize: 0.1,
+      mPosX: 0.5,
+      mPosY: 0.5,
+
+      label: 'no label',
+      fontname: 'sans',
+      fontcolor: '#000',
+
+      image: null
+    }
+
+    $('#qrcode').qrcode(options);
+  </script>
 </body>
 
 </html>
