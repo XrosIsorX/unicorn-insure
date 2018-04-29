@@ -112,17 +112,12 @@ function start() {
   navigator.mediaDevices.getUserMedia(constraints).
   then(gotStream).then(gotDevices).catch(handleError);
 
-<<<<<<< HEAD
   video = document.getElementById("video")
   image = document.getElementById("image")
 
   buttonTake = document.getElementById("button-take")
   buttonTake.onclick = function() {
-=======
 
-  document.getElementById("button-take").addEventListener("click", function() {
-    var image = document.getElementById("image")
->>>>>>> master
     var canvas = document.createElement("canvas");
     canvas.width = video.offsetWidth;
     canvas.height = video.offsetHeight;
@@ -140,18 +135,15 @@ function start() {
     buttonRetake.style.display = 'block';
   }
 
-<<<<<<< HEAD
   buttonRetake = document.getElementById("button-retake")
   buttonRetake.onclick = function() {
-=======
-  document.getElementById("button-retake").addEventListener("click", function() {
->>>>>>> master
+
     video.style.display = "block";
     image.style.display = "none";
 
     buttonTake.style.display = 'block';
     buttonRetake.style.display = 'none';
-<<<<<<< HEAD
+
   }
 
   buttonProceed = document.getElementById("button-proceed")
@@ -197,12 +189,3 @@ function handleError(error) {
 //   clear();
 //   loadPictureSummary();
 // })
-=======
-  });
-
-}
-
-function handleError(error) {
-  console.log('navigator.getUserMedia error: ', error);
-}
->>>>>>> master
