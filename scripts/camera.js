@@ -31,13 +31,14 @@ function loadCamera() {
 
   var row = createTag('div', 'row');
 
-  buttonTake = createTag('button', '', row);
+  buttonTake = createTag('button', 'btn btn-outline-danger btn-sm', row);
   buttonTake.id = 'button-take';
   buttonTake.innerHTML = 'Take';
 
-  buttonRetake = createTag('button', '', row);
+
+  buttonRetake = createTag('button', 'btn btn-outline-success btn-sm', row);
   buttonRetake.id = 'button-retake';
-  buttonRetake.innerHTML = 'Retry';
+  buttonRetake.innerHTML = 'Next';
   buttonRetake.style.display = 'none';
 
   row = createTag('div', 'row');
@@ -111,9 +112,17 @@ function start() {
   navigator.mediaDevices.getUserMedia(constraints).
   then(gotStream).then(gotDevices).catch(handleError);
 
+<<<<<<< HEAD
+  video = document.getElementById("video")
+  image = document.getElementById("image")
+
+  buttonTake = document.getElementById("button-take")
+  buttonTake.onclick = function() {
+=======
 
   document.getElementById("button-take").addEventListener("click", function() {
     var image = document.getElementById("image")
+>>>>>>> master
     var canvas = document.createElement("canvas");
     canvas.width = video.offsetWidth;
     canvas.height = video.offsetHeight;
@@ -129,14 +138,66 @@ function start() {
 
     buttonTake.style.display = 'none';
     buttonRetake.style.display = 'block';
-  });
+  }
 
+<<<<<<< HEAD
+  buttonRetake = document.getElementById("button-retake")
+  buttonRetake.onclick = function() {
+=======
   document.getElementById("button-retake").addEventListener("click", function() {
+>>>>>>> master
     video.style.display = "block";
     image.style.display = "none";
 
     buttonTake.style.display = 'block';
     buttonRetake.style.display = 'none';
+<<<<<<< HEAD
+  }
+
+  buttonProceed = document.getElementById("button-proceed")
+  buttonProceed.onclick = function() {
+    console.log("ok")
+    clear();
+    loadPictureSummary();
+  }
+}
+
+
+function handleError(error) {
+  console.log('navigator.getUserMedia error: ', error);
+}
+
+//
+// $("#button-take").click(function(){
+//   var canvas = document.createElement("canvas");
+//   canvas.width = video.offsetWidth;
+//   canvas.height = video.offsetHeight;
+//   canvas.getContext('2d')
+//         .drawImage(video, 0, 0, canvas.width, canvas.height);
+//
+//   image.src = canvas.toDataURL();
+//   images.push(image.src)
+//
+//   image.style.display = "block";
+//   video.style.display = "none";
+//
+//   buttonTake.style.display = 'none';
+//   buttonRetake.style.display = 'block';
+// });
+//
+// $("#button-retake").click(function(){
+//   video.style.display = "block";
+//   image.style.display = "none";
+//
+//   buttonTake.style.display = 'block';
+//   buttonRetake.style.display = 'none';
+// })
+//
+// $("#button-proceed").click(function(){
+//   clear();
+//   loadPictureSummary();
+// })
+=======
   });
 
 }
@@ -144,3 +205,4 @@ function start() {
 function handleError(error) {
   console.log('navigator.getUserMedia error: ', error);
 }
+>>>>>>> master

@@ -27,7 +27,6 @@ function loadLogin () {
   buttonLogin.innerHTML = 'SIGN IN';
   buttonLogin.onclick = function(){
     document.getElementsByTagName('body')[0].className = '';
-    clear();
-    loadSnap();
+    window.location.href = 'snap.html';
   };
 }

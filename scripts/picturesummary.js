@@ -10,13 +10,13 @@ function loadPictureSummary() {
   renderImages();
 
   row = createTag('div', 'row');
-  buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm', row);
-  buttonProceed.id = 'button-proceed'
+  var buttonProceed = createTag('a', 'btn btn-outline-primary btn-sm');
   buttonProceed.innerHTML = 'Proceed';
+  buttonProceed.id = 'button-proceed'
+
   buttonProceed.onclick = function() {
-    clear();
-    loadQR();
-  };
+    window.location.href = 'QR.html';
+  }
 }
 
 function renderImages() {
